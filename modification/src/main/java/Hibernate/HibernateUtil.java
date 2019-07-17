@@ -8,7 +8,6 @@ import org.hibernate.service.ServiceRegistry;
 import classes.User;
 import classes.Event;
 
-import org.hibernate.cfg.AnnotationConfiguration;
 
  
 public class HibernateUtil {

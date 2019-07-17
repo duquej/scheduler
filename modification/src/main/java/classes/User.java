@@ -23,8 +23,8 @@ public class User implements Serializable {
 
 	
     //@ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-	@ManyToMany(mappedBy = "users",cascade = { CascadeType.ALL }, fetch = FetchType.EAGER )
-	private List<Event> events;
+	//@ManyToMany(mappedBy = "users",cascade = { CascadeType.ALL }, fetch = FetchType.EAGER )
+	//private List<Event> events;
 	 
 
 	public User() {
@@ -74,15 +74,15 @@ public class User implements Serializable {
 	 * @return the events
 	 */
 	
-	public List<Event> getEvents() { 
-		return events;
-		}
+	// List<Event> getEvents() { 
+	//	return events;
+	//	}
 	
-	public void setEvents(List<Event> events) { this.events = events; }
+	//public void setEvents(List<Event> events) { this.events = events; }
 			 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", phoneNumber=" + phoneNumber + ", events=" + events +"]";
-	}
+	//@Override
+	//public String toString() {
+	//	return "User [id=" + id + ", name=" + name + ", phoneNumber=" + phoneNumber + ", events=" + events +"]";
+	//}
 
 }
