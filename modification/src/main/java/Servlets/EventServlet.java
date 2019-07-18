@@ -35,7 +35,13 @@ public class EventServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Event> events = eventDAO.getEvents();
+		//List<Event> events = eventDAO.getEvents();
+		
+		String date = request.getParameter("date");
+		String parsedDate = "'"+date+"'";
+		
+		List<Event> events = eventDAO.getEventByDate(parsedDate);
+		
 		
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(events);

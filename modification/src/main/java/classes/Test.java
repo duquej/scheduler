@@ -20,8 +20,8 @@ public class Test {
 		   test.setName("bowling");
 		   
 		   User user = new User();
-		   user.setName("cameron");
-		   user.setPhoneNumber("98");
+		   user.setName("zod");
+		   user.setPhoneNumber("781");
 		   
 		   List<User> users = new ArrayList();
 		   List<Event> events = new ArrayList();

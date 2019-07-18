@@ -25,7 +25,24 @@ public class User implements Serializable {
     //@ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
 	//@ManyToMany(mappedBy = "users",cascade = { CascadeType.ALL }, fetch = FetchType.EAGER )
 	//private List<Event> events;
+	
+	@Column(name="status")
+	private int status;
 	 
+
+	/**
+	 * @return the status
+	 */
+	public int getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
 	public User() {
 
@@ -70,6 +87,11 @@ public class User implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", phoneNumber=" + phoneNumber + ", status=" + status + "]";
+	}
+
 	/**
 	 * @return the events
 	 */
@@ -80,9 +102,6 @@ public class User implements Serializable {
 	
 	//public void setEvents(List<Event> events) { this.events = events; }
 			 
-	//@Override
-	//public String toString() {
-	//	return "User [id=" + id + ", name=" + name + ", phoneNumber=" + phoneNumber + ", events=" + events +"]";
-	//}
+	
 
 }

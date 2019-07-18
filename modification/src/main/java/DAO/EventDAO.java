@@ -59,5 +59,12 @@ public class EventDAO {
     	
     }
     
+    @SuppressWarnings("unchecked")
+	public List <Event> getEventByDate(String date) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery("From Event where "+date+" between beginDate and endDate").list();
+        }
+    }
+    
     
 }
