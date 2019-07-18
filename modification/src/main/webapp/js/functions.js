@@ -20,12 +20,26 @@ $( document ).ready(function() {
 
 
 function onLaunch(){
+	loadEventData();
 	
 	
 }
 
 function loadEventData(){
+		
+	$.ajax({
+	    type:"GET",
+	    url: "EventServlet",
+	    data:"date="+document.getElementById("queryDate").value ,
+	    success: function(data){
+	        console.log(data);
+	    }
+	});
 	
+	
+}
+
+function defaultLoad(){
 	
 	
 	
