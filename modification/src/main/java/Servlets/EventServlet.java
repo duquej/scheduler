@@ -2,6 +2,7 @@ package Servlets;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -68,6 +69,8 @@ public class EventServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Event> events = eventDAO.findAll();
+		
 		
 		if (request.getParameter("createEvent").equals("1")) {
 			String name = request.getParameter("eventname");
@@ -93,10 +96,18 @@ public class EventServlet extends HttpServlet {
 			String name = request.getParameter("name");
 			String phone = request.getParameter("phonenumber");
 			String status = request.getParameter("status");
-			
-			//find event by id.
+			Event event = null;
 			int stat= 0;
+
 			
+			for (int i =0; i < events.size(); i++) {
+				if (events.get(i).getId() == Integer.parseInt(eventID)) {
+					event = events.get(i);
+					
+				}
+				
+			}
+						
 			if (status.equals("Going")) {
 				stat = 0;
 				
@@ -115,6 +126,9 @@ public class EventServlet extends HttpServlet {
 			user.setName(name);
 			user.setPhoneNumber(phone);
 			user.setStatus(stat);
+			event.getUsers().add(user);
+			
+			eventDAO.saveOrUpdate(event);
 			
 			
 			

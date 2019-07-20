@@ -50,6 +50,10 @@
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             Success! Event added.
         </div>
+        <div id="success-alert-user" class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            Success! User added.
+        </div>
 		
 		<div style="text-align:center">
 		<h1 id="eventname">No Ongoing Event Today</h1>
@@ -181,7 +185,7 @@
 		        </button>
 		      </div>
 		      <div class="modal-body">
-		        <form role="formUser" method="POST" action="">
+		        <form role="form" method="POST" id="formUser" action="">
                     <input type="hidden" name="_token" value="">
                     <div class="form-group">
                         <label class="control-label">Event ID:</label>
@@ -203,8 +207,17 @@
 
                         </div>
                     </div>
+                    
                     <div class="form-group">
-                        <label class="control-label">Status</label>
+                        <label class="control-label">Status:</label>
+                        <div>
+                            <input id="status" type="status" class="form-control input-lg" name="status" value="" placeholder="" readonly>
+                        
+
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
 				                        <div class="dropdown">
 				  
 				  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropDownStatus" name="dropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

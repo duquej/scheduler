@@ -66,5 +66,11 @@ public class EventDAO {
         }
     }
     
+    public List<Event> findAll() {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery("From Event").list();
+        }
+    }
+    
     
 }

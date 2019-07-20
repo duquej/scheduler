@@ -30,7 +30,13 @@ $( document ).ready(function(){
 		    url: "EventServlet",
 		    data: $("#formEvent").serialize()+"&createEvent=1" ,
 		    success: function(data){
-		        alert("success");
+		        $('#myModal').click()
+
+		    	 $("#success-alert-event").fadeIn("slow",function(){
+			            setTimeout(function(){
+			              $("#success-alert-event").fadeOut("slow");
+			            },4000);
+			          });
 		    },
 		    error: function(data){
 		    	alert($("#formEvent").serialize()+"&createEvent=1");
@@ -51,8 +57,13 @@ $( document ).ready(function(){
 		    url: "EventServlet",
 		    data: $("#formUser").serialize()+"&createEvent=0&addUser=1" ,
 		    success: function(data){
-		        $('#myUser').toggle()
-		        $('#success-alert-event').show()
+		        $('#myUser').click()
+		        //$('#success-alert-user').show()
+		        $("#success-alert-user").fadeIn("slow",function(){
+		            setTimeout(function(){
+		              $("#success-alert-user").fadeOut("slow");
+		            },4000);
+		          });
 
 
 		    },
@@ -72,16 +83,23 @@ $( document ).ready(function(){
 	
 	$("#1drop").click(function () {
 		  $("#dropDownStatus").text($(this).text());
-		  });	
+	        document.getElementById("status").value = $(this).text();
+	});	
 	
 	$("#2drop").click(function () {
 		  $("#dropDownStatus").text($(this).text());
+	      document.getElementById("status").value = $(this).text();
+
 		  });	
 	$("#3drop").click(function () {
 		  $("#dropDownStatus").text($(this).text());
+	       document.getElementById("status").value = $(this).text();
+
 		  });	
 	$("#4drop").click(function () {
 		  $("#dropDownStatus").text($(this).text());
+	       document.getElementById("status").value = $(this).text();
+
 		  });	
 	
 	
@@ -91,7 +109,7 @@ $( document ).ready(function(){
 $( document ).ready(function() {
 	
 	//TODO: FIX LOADING DATES. 
-    $('#success-alert-event').hide()
+    
 
 	
 	var dateObj = new Date();
@@ -109,6 +127,9 @@ $( document ).ready(function() {
 
 
 function onLaunch(){
+	$('#success-alert-event').hide()
+    $('#success-alert-user').hide()
+
 	loadEventData();
 	
 	
