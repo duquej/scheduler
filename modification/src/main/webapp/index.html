@@ -22,6 +22,8 @@
 	
 	<div id="container">
 	
+	
+	
 			<nav class="navbar navbar-expand-sm bg-light">
 		
 		  <!-- Links -->
@@ -43,6 +45,11 @@
 			<input type="date" id="queryDate" name="getDate" value="2019-06-26">
 		
 		</div>
+		
+		<div id="success-alert-event" class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            Success! Event added.
+        </div>
 		
 		<div style="text-align:center">
 		<h1 id="eventname">No Ongoing Event Today</h1>
@@ -72,7 +79,7 @@
 		</button>	
 				
 		
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalLoginForm">
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myUser">
 		  Add Users
 		</button>
 		
@@ -164,6 +171,65 @@
 	</div><!-- /.modal -->
 		
 				<!-- Modal -->
+		<div class="modal fade" id="myUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Add a New User</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <form role="formUser" method="POST" action="">
+                    <input type="hidden" name="_token" value="">
+                    <div class="form-group">
+                        <label class="control-label">Event ID:</label>
+                        <div>
+                            <input type="event" class="form-control input-lg" name="eventID" value="" id="eventID" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Name:</label>
+                        <div>
+                            <input type="person_name" class="form-control input-lg" name="name" value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Phone number:</label>
+                        <div>
+                            <input type="phonenumber" class="form-control input-lg" name="phonenumber" value="" placeholder="optional">
+                        
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Status</label>
+				                        <div class="dropdown">
+				  
+				  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropDownStatus" name="dropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    Select Status
+				  </button>
+				  <div class="dropdown-menu" aria-labelledby="dropDownStatus">
+				    <a id="1drop" class="dropdown-item" href="#">Going</a>
+				    <a id="2drop" class="dropdown-item" href="#">Not Going</a>
+				    <a id="3drop" class="dropdown-item" href="#">Maybe</a>
+				    <a id="4drop" class="dropdown-item" href="#">Unknown</a>
+				    
+				  </div>
+				</div>
+                    </div>
+           
+                </form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button id="submit-user" type="button" class="btn btn-success">Submit</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
@@ -174,12 +240,12 @@
 		        </button>
 		      </div>
 		      <div class="modal-body">
-		        <form role="form" method="POST" action="">
+		        <form role="form" method="POST" action="" id="formEvent">
                     <input type="hidden" name="_token" value="">
                     <div class="form-group">
                         <label class="control-label">Event Name:</label>
                         <div>
-                            <input type="even_title" class="form-control input-lg" name="event name" value="">
+                            <input type="eventname" class="form-control input-lg" name="eventname" value="">
                         </div>
                     </div>
                     <div class="form-group">
@@ -201,7 +267,7 @@
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		        <button type="button" class="btn btn-primary">Save changes</button>
+		        <button id="submit-event" type="button" class="btn btn-success">Submit</button>
 		      </div>
 		    </div>
 		  </div>

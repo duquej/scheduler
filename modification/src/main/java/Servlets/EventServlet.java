@@ -1,6 +1,7 @@
 package Servlets;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,7 +14,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import DAO.EventDAO;
+import DAO.UserDAO;
 import classes.Event;
+import classes.User;
 
 /**
  * Servlet implementation class EventServlet
@@ -22,6 +25,7 @@ import classes.Event;
 public class EventServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private EventDAO eventDAO;
+	private UserDAO userDAO;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -64,8 +68,58 @@ public class EventServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		if (request.getParameter("createEvent").equals("1")) {
+			String name = request.getParameter("eventname");
+			String startDate = request.getParameter("begindate");
+			String endDate = request.getParameter("enddate");
+			
+			startDate= startDate.replace("/", "-");
+			endDate = endDate.replace("/", "-");
+			Date parsedStart=Date.valueOf(startDate);
+			Date parsedEnd = Date.valueOf(endDate);
+					   
+			Event event = new Event();
+			event.setBeginDate(parsedStart);
+			event.setEndDate(parsedEnd);
+			event.setName(name);
+			
+			eventDAO.saveOrUpdate(event);
+			
+			
+			
+		} else if (request.getParameter("addUser").equals("1")) {
+			String eventID = request.getParameter("eventID");
+			String name = request.getParameter("name");
+			String phone = request.getParameter("phonenumber");
+			String status = request.getParameter("status");
+			
+			//find event by id.
+			int stat= 0;
+			
+			if (status.equals("Going")) {
+				stat = 0;
+				
+			} else if (status.equals("Not Going")) {
+				stat = 1;
+				
+			} else if (status.equals("Maybe")) {
+				stat = 2;
+				
+			} else if (status.equals("Unknown")) {
+				stat = 3;
+				
+			}
+			
+			User user = new User();
+			user.setName(name);
+			user.setPhoneNumber(phone);
+			user.setStatus(stat);
+			
+			
+			
+			
+		}
 	}
 
 }

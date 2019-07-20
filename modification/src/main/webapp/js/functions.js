@@ -18,12 +18,81 @@ $(document).ready(function(){
     };
     date_input.datepicker(options);
     date_input2.datepicker(options);
-  })
+    
+    
+   
+})
   
-  
+$( document ).ready(function(){
+	$('#submit-event').click(function(event){
+		$.ajax({
+		    type:"POST",
+		    url: "EventServlet",
+		    data: $("#formEvent").serialize()+"&createEvent=1" ,
+		    success: function(data){
+		        alert("success");
+		    },
+		    error: function(data){
+		    	alert($("#formEvent").serialize()+"&createEvent=1");
+		    	
+		    }
+		});
+	});
+	
+	
+	
+	
+});
+
+$( document ).ready(function(){
+	$('#submit-user').click(function(event){
+		$.ajax({
+		    type:"POST",
+		    url: "EventServlet",
+		    data: $("#formUser").serialize()+"&createEvent=0&addUser=1" ,
+		    success: function(data){
+		        $('#myUser').toggle()
+		        $('#success-alert-event').show()
+
+
+		    },
+		    error: function(data){
+		    	alert($("#formUser").serialize()+"&createEvent=1&addUser=1");
+		    	
+		    }
+		});
+	});
+	
+	
+	
+	
+});
+
+$( document ).ready(function(){
+	
+	$("#1drop").click(function () {
+		  $("#dropDownStatus").text($(this).text());
+		  });	
+	
+	$("#2drop").click(function () {
+		  $("#dropDownStatus").text($(this).text());
+		  });	
+	$("#3drop").click(function () {
+		  $("#dropDownStatus").text($(this).text());
+		  });	
+	$("#4drop").click(function () {
+		  $("#dropDownStatus").text($(this).text());
+		  });	
+	
+	
+	
+});
+
 $( document ).ready(function() {
 	
 	//TODO: FIX LOADING DATES. 
+    $('#success-alert-event').hide()
+
 	
 	var dateObj = new Date();
 	var month = dateObj.getUTCMonth() + 1; //months from 1-12
@@ -32,6 +101,7 @@ $( document ).ready(function() {
 
 	newdate = year + "-0" + month + "-" + day;
 	document.getElementById("queryDate").value = newdate
+	
 	
 	
 	onLaunch();
@@ -56,6 +126,8 @@ function loadEventData(){
 	        console.log(data);
 	        defaultLoad(data);
 	        event = data;
+	        document.getElementById("eventID").value = event[0].id
+	        
 	    }
 	});
 	

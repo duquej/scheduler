@@ -17,7 +17,7 @@ public class Test {
 		   Event test = new Event();
 		   test.setBeginDate(new Date(2019-10-03));
 		   test.setEndDate(new Date(2019-10-03));
-		   test.setName("Terris Cook Out");
+		   test.setName("Bean Cook Out");
 		   
 		   User user = new User();
 		   user.setName("Jorge");
