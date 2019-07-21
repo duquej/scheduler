@@ -22,7 +22,22 @@ $(document).ready(function(){
     
    
 })
-  
+$( document ).ready(function(){
+	$('#queryDate').change(function() {
+	    var date = $(this).val();
+		document.getElementById("queryDate").value = date;
+		$("#users > tbody").empty();
+		
+		users= [];
+		console.log("test");
+		onLaunch();
+
+	});
+	
+	
+});
+
+
 $( document ).ready(function(){
 	$('#submit-event').click(function(event){
 		$.ajax({
@@ -107,6 +122,8 @@ $( document ).ready(function(){
 });
 
 $( document ).ready(function() {
+	$('#success-alert-event').hide()
+    $('#success-alert-user').hide()
 	
 	//TODO: FIX LOADING DATES. 
     
@@ -119,6 +136,8 @@ $( document ).ready(function() {
 
 	newdate = year + "-0" + month + "-" + day;
 	document.getElementById("queryDate").value = newdate
+	document.getElementById("queryDate").value = "2019-07-16";
+
 	
 	
 	
@@ -127,8 +146,7 @@ $( document ).ready(function() {
 
 
 function onLaunch(){
-	$('#success-alert-event').hide()
-    $('#success-alert-user').hide()
+	
 
 	loadEventData();
 	
@@ -137,7 +155,6 @@ function onLaunch(){
 
 function loadEventData(){
 	
-	document.getElementById("queryDate").value = "2019-07-16";
 		
 	$.ajax({
 	    type:"GET",
@@ -182,7 +199,7 @@ function defaultLoad(data){
 		  
 		});
 	
-	imageDisplayControl(users, event)
+	imageDisplayControl(users)
 	
 }
 
@@ -216,7 +233,7 @@ function imageDisplayControl(data){
 
 		
 		
-		$('#users tr:last').after('<tr><td align="left"> <img src="'+imgsrc+'" align="texttop" alt="IN" width="14" height="14" title="reserve" onclick="">'
+		$('#users > tbody').append('<tr><td align="left"> <img src="'+imgsrc+'" align="texttop" alt="IN" width="14" height="14" title="reserve" onclick="">'
 				+name+"</td> <td align='left'>"+status+"</td> <td align='left'>"+ phone+"</td></tr>");
 				
 	}
