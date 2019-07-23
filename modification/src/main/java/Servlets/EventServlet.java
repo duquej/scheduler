@@ -133,6 +133,10 @@ public class EventServlet extends HttpServlet {
 			
 			
 			
+		} else if(request.getParameter("deleteEvent").equals("1")) {
+			
+			
+			
 		}
 	}
 

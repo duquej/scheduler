@@ -57,4 +57,26 @@ public class UserDAO {
     	
     	
     }
+    
+    public void delete(int id) {
+    	Transaction tx= null;
+    	try {
+	    	Session session;
+	        User user;
+	
+	        session = HibernateUtil.getSessionFactory().getCurrentSession();
+    		tx = session.beginTransaction();
+	        user = session.load(User.class,id);
+	        session.delete(user);
+	
+	        session.flush() ;
+    	}catch(Exception e) {
+    		if (tx != null) 
+    			tx.rollback();
+    		e.printStackTrace();
+    		
+    	}
+    
+    	
+    }
 }

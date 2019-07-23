@@ -83,7 +83,36 @@ $( document ).ready(function(){
 
 		    },
 		    error: function(data){
-		    	alert($("#formUser").serialize()+"&createEvent=1&addUser=1");
+		    	alert($("#formUser").serialize()+"&createEvent=0&addUser=1");
+		    	
+		    }
+		});
+	});
+	
+	
+	
+	
+});
+
+$( document ).ready(function(){
+	$('#submit-delete').click(function(event){
+		$.ajax({
+		    type:"POST",
+		    url: "UserServlet",
+		    data: $("#formEdit").serialize()+"&deleteUser=1" ,
+		    success: function(data){
+		        $('#myEdit').click()
+
+		        $("#success-alert-user-delete").fadeIn("slow",function(){
+		            setTimeout(function(){
+		              $("#success-alert-user").fadeOut("slow");
+		            },4000);
+		          });
+
+
+		    },
+		    error: function(data){
+		    	alert($("#formEdit").serialize()+"&deleteUser=1");
 		    	
 		    }
 		});
@@ -117,6 +146,27 @@ $( document ).ready(function(){
 
 		  });	
 	
+	$("#5drop").click(function () {
+		  $("#editUserDropDown").text($(this).text());
+	       document.getElementById("editstatus").value = $(this).text();
+
+		  });
+	$("#6drop").click(function () {
+		  $("#editUserDropDown").text($(this).text());
+	       document.getElementById("editstatus").value = $(this).text();
+
+		  });
+	$("#7drop").click(function () {
+		  $("#editUserDropDown").text($(this).text());
+	       document.getElementById("editstatus").value = $(this).text();
+
+		  });
+	$("#8drop").click(function () {
+		  $("#editUserDropDown").text($(this).text());
+	       document.getElementById("editstatus").value = $(this).text();
+
+		  });
+	
 	
 	
 });
@@ -124,6 +174,8 @@ $( document ).ready(function(){
 $( document ).ready(function() {
 	$('#success-alert-event').hide()
     $('#success-alert-user').hide()
+    $('#success-alert-user-delete').hide()
+
 	
 	//TODO: FIX LOADING DATES. 
     
@@ -186,10 +238,10 @@ function defaultLoad(data){
 		$.each(event.users, function(inc, user){
 			
 			
-			
 			users[inc] = {name: user.name, 
 					status: user.status, 
-					phonenumber: user.phoneNumber}			
+					phonenumber: user.phoneNumber,
+					id: user.id}			
 			
 			
 		});
@@ -213,6 +265,7 @@ function imageDisplayControl(data){
 		var eventName = eventDetails.name;
 		var beginDate = eventDetails.beginDate;
 		var endDate = eventDetails.endDate;
+		var id = data[i].id;
 		
 		if (data[i].status === 0 ) {
 			status = "Going";
@@ -234,10 +287,31 @@ function imageDisplayControl(data){
 		
 		
 		$('#users > tbody').append('<tr><td align="left"> <img src="'+imgsrc+'" align="texttop" alt="IN" width="14" height="14" title="reserve" onclick="">'
-				+name+"</td> <td align='left'>"+status+"</td> <td align='left'>"+ phone+"</td></tr>");
+				+name+"</td> <td align='left'>"+status+"</td> <td align='left'>"+ phone+"</td>  <td align='left'> <button type='button' class='btn btn-info btn-sm' onclick='Javascript: userOptions("+id+");'>Edit</button></td></tr>");
 				
 	}
 	
+	
+}
+
+function userOptions(id){
+	//$('#myEdit').show();
+	var user;
+	
+	for(var i=0; i<users.length; i++){
+		if (users[i].id === id){
+			user=users[i];
+		}
+	}
+	console.log(user);
+	
+
+    document.getElementById("userID").value = id;
+    document.getElementById("editstatus").value = user.status;
+    document.getElementById("editphone").value = user.phonenumber;
+    document.getElementById("editname").value = user.name;
+
+    $('#myEdit').modal('show');
 	
 }
 
