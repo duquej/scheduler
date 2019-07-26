@@ -44,9 +44,14 @@ public class EventServlet extends HttpServlet {
 		
 		String date = request.getParameter("date");
 		String parsedDate = "'"+date+"'";
+		String status = request.getParameter("default");
+		List<Event> events = new ArrayList<>();
 		
-		List<Event> events = eventDAO.getEventByDate(parsedDate);
-		
+		if (status.equals("1")) {
+			events = eventDAO.getEventByDate(parsedDate);
+		} else {
+			events = eventDAO.findMostRecent();
+		}
 		
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(events);

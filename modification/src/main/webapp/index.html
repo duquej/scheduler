@@ -24,21 +24,28 @@
 	
 	
 	
-			<nav class="navbar navbar-expand-sm bg-light">
+				<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+		  <a class="navbar-brand" href="#">Bootstrap</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
 		
-		  <!-- Links -->
-		  <ul class="navbar-nav">
-		    <li class="nav-item">
-		      <a class="nav-link" href="#">Events</a>
-		    </li>
-		    <li class="nav-item">
-		      <a class="nav-link" href="#ModalLoginForm">Log in</a>
-		    </li>
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mx-auto">
+		      <li class="nav-item active">
+		        <a class="nav-link" href="#">Home</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">Log in</a>
+		      </li>
 		    
-		   
-		   
-		  </ul>
-		
+		    </ul>
+		    <form class="form-inline">
+		      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+		      <button class="btn btn-light my-sm-0" type="submit">Search</button>
+		    </form>
+		    
+		  </div>
 		</nav>
 		<div style="text-align: center; background: white">
 			<label for="start">Date:</label>
@@ -46,21 +53,26 @@
 		
 		</div>
 		
-		<div id="success-alert-event" class="alert alert-success alert-dismissable">
+		<div id="success-alert-event" class="alert alert-success alert-dismissable collapse">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            Success! Event added.
+            <strong>Success!</strong> Event added.
         </div>
-        <div id="success-alert-user" class="alert alert-success alert-dismissable">
+        <div id="success-alert-user" class="alert alert-success alert-dismissable collapse">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            Success! User added.
+            <strong>Success!</strong> User added.
         </div>
-        <div id="success-alert-user-delete" class="alert alert-success alert-dismissable">
+        <div id="success-alert-user-delete" class="alert alert-success alert-dismissable collapse">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            Success! User deleted.
+            <strong>Success!</strong> User deleted.
+        </div>
+        <div id="success-alert-user-edit" class="alert alert-success alert-dismissable collapse">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>Success!</strong> User edited.
         </div>
 		
 		<div style="text-align:center">
 		<h1 id="eventname">No Ongoing Event Today</h1>
+		<h2 id="eventdates">Dates: Null - Null</h2>
 		</div>
 		
 		<div>

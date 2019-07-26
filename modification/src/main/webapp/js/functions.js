@@ -4,6 +4,7 @@
 var eventDetails;
 var event;
 var users = [];
+var status;
 
 $(document).ready(function(){
     var date_input=$('input[name="begindate"]'); 
@@ -27,9 +28,8 @@ $( document ).ready(function(){
 	    var date = $(this).val();
 		document.getElementById("queryDate").value = date;
 		$("#users > tbody").empty();
-		
+		status = 1;
 		users= [];
-		console.log("test");
 		onLaunch();
 
 	});
@@ -52,9 +52,46 @@ $( document ).ready(function(){
 			              $("#success-alert-event").fadeOut("slow");
 			            },4000);
 			          });
+		        
+		        clearData();
+		        onLaunch();
+				
+
 		    },
 		    error: function(data){
 		    	alert($("#formEvent").serialize()+"&createEvent=1");
+		    	
+		    }
+		});
+	});
+	
+	
+	
+	
+});
+
+$( document ).ready(function(){
+	$('#submit-edit').click(function(event){
+		$.ajax({
+		    type:"POST",
+		    url: "UserServlet",
+		    data: $("#formEdit").serialize()+"&deleteUser=0&editUser=1" ,
+		    success: function(data){
+		        $('#myEdit').click()
+
+		    	 $("#success-alert-user-edit").fadeIn("slow",function(){
+			            setTimeout(function(){
+			              $("#success-alert-user-edit").fadeOut("slow");
+			            },4000);
+			          });
+		        
+		        clearData();
+		        onLaunch();
+				
+
+		    },
+		    error: function(data){
+		    	alert($("#formEvent").serialize()+"&deleteUser=0&editUser=1");
 		    	
 		    }
 		});
@@ -79,6 +116,9 @@ $( document ).ready(function(){
 		              $("#success-alert-user").fadeOut("slow");
 		            },4000);
 		          });
+		        
+		        clearData();
+		        onLaunch();
 
 
 		    },
@@ -105,9 +145,12 @@ $( document ).ready(function(){
 
 		        $("#success-alert-user-delete").fadeIn("slow",function(){
 		            setTimeout(function(){
-		              $("#success-alert-user").fadeOut("slow");
+		              $("#success-alert-user-delete").fadeOut("slow");
 		            },4000);
 		          });
+		        
+		        clearData();
+		        onLaunch();
 
 
 		    },
@@ -188,7 +231,7 @@ $( document ).ready(function() {
 
 	newdate = year + "-0" + month + "-" + day;
 	document.getElementById("queryDate").value = newdate
-	document.getElementById("queryDate").value = "2019-07-16";
+	status = 0;
 
 	
 	
@@ -196,7 +239,10 @@ $( document ).ready(function() {
 	onLaunch();
 });
 
-
+function clearData(){
+	users= [];
+	$("#users > tbody").empty();
+}
 function onLaunch(){
 	
 
@@ -211,7 +257,7 @@ function loadEventData(){
 	$.ajax({
 	    type:"GET",
 	    url: "EventServlet",
-	    data:"date="+document.getElementById("queryDate").value ,
+	    data:"date="+document.getElementById("queryDate").value +"&default="+status,
 	    success: function(data){
 	        console.log(data);
 	        defaultLoad(data);
@@ -251,7 +297,14 @@ function defaultLoad(data){
 		  
 		});
 	
-	imageDisplayControl(users)
+	imageDisplayControl(users);
+	detailsDisplayControl();
+	
+}
+function detailsDisplayControl(){
+	eventname.innerText = "Event Name: "+ eventDetails.name;
+	eventdates.innerText = "Dates: "+ eventDetails.beginDate +" to "+eventDetails.endDate;
+
 	
 }
 
@@ -282,7 +335,6 @@ function imageDisplayControl(data){
 			imgsrc = "images/greyDot.png";
 		}
 		
-		eventname.innerText = "Event Name: "+ eventName;
 
 		
 		

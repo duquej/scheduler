@@ -72,9 +72,10 @@ public class EventDAO {
         }
     }
     //SELECT * FROM   scheduler.events ORDER  BY begin_date DESC LIMIT  1;
-    public List<Event> findMostRecent() {
+    @SuppressWarnings("unchecked")
+	public List<Event> findMostRecent() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("From Event ORDER BY beginDate DESC LIMIT 1").list();
+            return session.createQuery("From Event ORDER BY beginDate DESC").setMaxResults(1).list();
         }
     }
     

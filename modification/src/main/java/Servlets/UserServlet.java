@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import DAO.UserDAO;
 import classes.Event;
+import classes.User;
 
 /**
  * Servlet implementation class UserServlet
@@ -43,9 +44,48 @@ public class UserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		List<User> users = dao.findAll();
 		if (request.getParameter("deleteUser").equals("1")) {
-			System.out.println("i made it here");
 			dao.delete(Integer.parseInt(request.getParameter("userID")));
+		} else if (request.getParameter("editUser").equals("1")) {
+			Integer userid = Integer.parseInt(request.getParameter("userID"));
+			String name = request.getParameter("editname");
+			String phone = request.getParameter("editphone");
+			String status = request.getParameter("editstatus");
+			int stat = 0;
+			
+			if (status.equals("Going")) {
+				stat = 0;
+				
+			} else if (status.equals("Not Going")) {
+				stat = 1;
+				
+			} else if (status.equals("Maybe")) {
+				stat = 2;
+				
+			} else if (status.equals("Unknown")) {
+				stat = 3;
+				
+			}
+			
+			User user = null;
+			for(int i=0; i < users.size(); i++) {
+				if (users.get(i).getId() == userid) {
+					user = users.get(i);
+					
+				}
+			}
+			
+			user.setName(name);;
+			user.setPhoneNumber(phone);
+			user.setStatus(stat);
+			
+			dao.saveOrUpdate(user);
+			
+			
+			
+			
+			
 		}
 
 	}

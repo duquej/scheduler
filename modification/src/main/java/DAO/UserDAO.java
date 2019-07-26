@@ -44,6 +44,7 @@ public class UserDAO {
     		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
     		tx = session.beginTransaction();
     		session.saveOrUpdate(t);
+    		tx.commit();
     		
     		
     	}catch(HibernateException e){
@@ -88,4 +89,11 @@ public class UserDAO {
     
     	
     }
+    
+    public List<User> findAll() {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery("From User").list();
+        }
+    }
+    
 }
