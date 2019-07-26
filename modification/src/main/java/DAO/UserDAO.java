@@ -4,6 +4,7 @@ package DAO;
 import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -66,10 +67,18 @@ public class UserDAO {
 	
 	        session = HibernateUtil.getSessionFactory().getCurrentSession();
     		tx = session.beginTransaction();
-	        user = session.load(User.class,id);
-	        session.delete(user);
+    		
+    		Query q = session.createQuery("DELETE FROM EventHasUser WHERE user="+ id);
+    		q.executeUpdate();
+    		Query a = session.createQuery("delete from User where id="+id);
+    		a.executeUpdate();
+    		
+    		tx.commit();
+    		
+	        //user = session.load(User.class,id);
+	        //session.delete(user);
 	
-	        session.flush() ;
+	        //session.flush() ;
     	}catch(Exception e) {
     		if (tx != null) 
     			tx.rollback();

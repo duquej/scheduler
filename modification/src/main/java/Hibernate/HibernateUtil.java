@@ -7,6 +7,7 @@ import org.hibernate.service.ServiceRegistry;
 
 import classes.User;
 import classes.Event;
+import classes.EventHasUser;
 
 
  
@@ -17,7 +18,7 @@ public class HibernateUtil {
     	try {
 	        if (sessionFactory == null) {
 	            // loads configuration and mappings
-	            Configuration configuration = new Configuration().addAnnotatedClass(User.class).addAnnotatedClass(Event.class).configure("hibernate.cfg.xml");
+	            Configuration configuration = new Configuration().addAnnotatedClass(User.class).addAnnotatedClass(Event.class).addAnnotatedClass(EventHasUser.class).configure("hibernate.cfg.xml");
 	            ServiceRegistry serviceRegistry
 	                = new StandardServiceRegistryBuilder()
 	                    .applySettings(configuration.getProperties()).build();
