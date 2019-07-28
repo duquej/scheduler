@@ -82,6 +82,12 @@ public class EventServlet extends HttpServlet {
 			String startDate = request.getParameter("begindate");
 			String endDate = request.getParameter("enddate");
 			
+			List<Event> allDateEvents = new ArrayList<>();
+			allDateEvents = eventDAO.getEventByDate(startDate);
+			if (!allDateEvents.isEmpty()) {
+				throw new ServletException();
+			}
+			
 			startDate= startDate.replace("/", "-");
 			endDate = endDate.replace("/", "-");
 			Date parsedStart=Date.valueOf(startDate);
@@ -139,6 +145,9 @@ public class EventServlet extends HttpServlet {
 			
 			
 		} else if(request.getParameter("deleteEvent").equals("1")) {
+			Integer id = Integer.parseInt(request.getParameter("eventId"));
+			eventDAO.delete(id);
+			
 			
 			
 			

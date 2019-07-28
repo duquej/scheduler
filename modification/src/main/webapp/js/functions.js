@@ -30,6 +30,7 @@ $( document ).ready(function(){
 		$("#users > tbody").empty();
 		status = 1;
 		users= [];
+        clearData();
 		onLaunch();
 
 	});
@@ -50,6 +51,45 @@ $( document ).ready(function(){
 		    	 $("#success-alert-event").fadeIn("slow",function(){
 			            setTimeout(function(){
 			              $("#success-alert-event").fadeOut("slow");
+			            },4000);
+			          });
+		        
+		        clearData();
+		        onLaunch();
+				
+
+		    },
+		    error: function(data){
+		    	$('#myModal').click()
+
+		    	 $("#failure-alert-event").fadeIn("slow",function(){
+			            setTimeout(function(){
+			              $("#failure-alert-event").fadeOut("slow");
+			            },4000);
+			          });
+		    	
+		    	
+		    }
+		});
+	});
+	
+	
+	
+	
+});
+
+$( document ).ready(function(){
+	$('#submit-delete-event').click(function(event){
+		$.ajax({
+		    type:"POST",
+		    url: "EventServlet",
+		    data: $("#formEvent").serialize()+"&createEvent=0&addUser=0&deleteEvent=1&eventId="+eventDetails.id,
+		    success: function(data){
+		        $('#deleteEvent').click()
+
+		    	 $("#success-alert-event-delete").fadeIn("slow",function(){
+			            setTimeout(function(){
+			              $("#success-alert-event-delete").fadeOut("slow");
 			            },4000);
 			          });
 		        
@@ -136,6 +176,7 @@ $( document ).ready(function(){
 
 $( document ).ready(function(){
 	$('#submit-delete').click(function(event){
+		
 		$.ajax({
 		    type:"POST",
 		    url: "UserServlet",
@@ -215,9 +256,9 @@ $( document ).ready(function(){
 });
 
 $( document ).ready(function() {
-	$('#success-alert-event').hide()
-    $('#success-alert-user').hide()
-    $('#success-alert-user-delete').hide()
+	
+    $('#deleteEventButton').hide()
+    $('#addUserButton').hide()
 
 	
 	//TODO: FIX LOADING DATES. 
@@ -242,6 +283,14 @@ $( document ).ready(function() {
 function clearData(){
 	users= [];
 	$("#users > tbody").empty();
+	eventname.innerText = "Event: No event.";
+	eventdates.innerText = "Dates: ";
+	eventDetails=null;
+    $('#deleteEventButton').hide()
+    $('#addUserButton').hide()
+
+    
+
 }
 function onLaunch(){
 	
@@ -262,10 +311,14 @@ function loadEventData(){
 	        console.log(data);
 	        defaultLoad(data);
 	        event = data;
-	        document.getElementById("eventID").value = event[0].id
 	        
 	    }
 	});
+	
+	
+}
+
+function formValidation(){
 	
 	
 }
@@ -275,10 +328,11 @@ function defaultLoad(data){
 	
 	$.each(data, function(i, event ) {
 		
-
+        document.getElementById("eventID").value = event.id
 		eventDetails = {name:event.name, 
 				beginDate: event.beginDate,
-				endDate: event.endDate}
+				endDate: event.endDate,
+				id: event.id}
 				
 		
 		$.each(event.users, function(inc, user){
@@ -292,13 +346,13 @@ function defaultLoad(data){
 			
 		});
 		
-		
-		
+        $('#deleteEventButton').show()
+        $('#addUserButton').show()
+        imageDisplayControl(users);
+    	detailsDisplayControl();
 		  
 		});
 	
-	imageDisplayControl(users);
-	detailsDisplayControl();
 	
 }
 function detailsDisplayControl(){

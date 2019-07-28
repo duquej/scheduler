@@ -25,13 +25,13 @@
 	
 	
 				<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-		  <a class="navbar-brand" href="#">Bootstrap</a>
+		  <a class="navbar-brand" href="#">Scheduler by Jonathan</a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
 		
 		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-		    <ul class="navbar-nav mx-auto">
+		    <ul class="navbar-nav mx-left">
 		      <li class="nav-item active">
 		        <a class="nav-link" href="#">Home</a>
 		      </li>
@@ -40,19 +40,14 @@
 		      </li>
 		    
 		    </ul>
-		    <form class="form-inline">
-		      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-		      <button class="btn btn-light my-sm-0" type="submit">Search</button>
-		    </form>
+		   
 		    
 		  </div>
 		</nav>
-		<div style="text-align: center; background: white">
-			<label for="start">Date:</label>
-			<input type="date" id="queryDate" name="getDate" value="2019-06-26">
-		
-		</div>
-		
+			<div id="failure-alert-event" class="alert alert-danger alert-dismissable collapse">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>Failure!</strong> Event already exists for this date.
+        </div>
 		<div id="success-alert-event" class="alert alert-success alert-dismissable collapse">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <strong>Success!</strong> Event added.
@@ -69,6 +64,16 @@
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <strong>Success!</strong> User edited.
         </div>
+        <div id="success-alert-event-delete" class="alert alert-success alert-dismissable collapse">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>Success!</strong> Event deleted.
+        </div>
+		<div style="text-align: center; background: white">
+			<label for="start">Select Date Event:</label>
+			<input type="date" id="queryDate" name="getDate" value="2019-06-26">
+		
+		</div>
+		
 		
 		<div style="text-align:center">
 		<h1 id="eventname">No Ongoing Event Today</h1>
@@ -77,6 +82,7 @@
 		
 		<div>
 		
+		<div class="pre-scrollable">
 		<table id = "users" class="table table-striped" width="85%" align="center">
 		<thead>
 		<tr><td width="40%" align="left"><b>Name</b></td>
@@ -98,6 +104,7 @@
 		
 		
 		</table>
+		</div>
 		
 		
 		
@@ -108,11 +115,11 @@
 		</button>	
 				
 		
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myUser">
+		<button type="button" id="addUserButton"class="btn btn-primary" data-toggle="modal" data-target="#myUser">
 		  Add Users
 		</button>
 		
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myEdit">
+		<button type="button" id="deleteEventButton"class="btn btn-primary" data-toggle="modal" data-target="#deleteEvent">
 		  Delete Event
 		</button>
 		
@@ -299,6 +306,24 @@
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 		        <button id="submit-event" type="button" class="btn btn-success">Submit</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		<div class="modal fade" id="deleteEvent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this event?</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button id="submit-delete-event" type="button" class="btn btn-success">Submit</button>
 		      </div>
 		    </div>
 		  </div>

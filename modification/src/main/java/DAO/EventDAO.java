@@ -4,6 +4,7 @@ package DAO;
 import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -77,6 +78,36 @@ public class EventDAO {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery("From Event ORDER BY beginDate DESC").setMaxResults(1).list();
         }
+    }
+    
+    public void delete(int id) {
+    	Transaction tx= null;
+    	try {
+	    	Session session;
+	        Event event;
+	
+	        session = HibernateUtil.getSessionFactory().getCurrentSession();
+    		tx = session.beginTransaction();
+    		
+    		Query q = session.createQuery("DELETE FROM EventHasUser WHERE event="+ id);
+    		q.executeUpdate();
+    		Query a = session.createQuery("delete from Event where id="+id);
+    		a.executeUpdate();
+    		
+    		tx.commit();
+    		
+	        //user = session.load(User.class,id);
+	        //session.delete(user);
+	
+	        //session.flush() ;
+    	}catch(Exception e) {
+    		if (tx != null) 
+    			tx.rollback();
+    		e.printStackTrace();
+    		
+    	}
+    
+    	
     }
     
 }
