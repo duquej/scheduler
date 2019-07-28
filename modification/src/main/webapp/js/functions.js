@@ -318,7 +318,11 @@ function loadEventData(){
 	
 }
 
-function formValidation(){
+function eventFormValidation(){
+	var status=0;
+	
+//	formEventName
+	
 	
 	
 }
