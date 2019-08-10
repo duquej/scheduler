@@ -83,7 +83,7 @@ public class EventServlet extends HttpServlet {
 			String endDate = request.getParameter("enddate");
 			
 			List<Event> allDateEvents = new ArrayList<>();
-			allDateEvents = eventDAO.getEventByDate(startDate);
+			allDateEvents = eventDAO.getEventByDate("'"+startDate+"'");
 			if (!allDateEvents.isEmpty()) {
 				throw new ServletException();
 			}

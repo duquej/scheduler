@@ -25,7 +25,7 @@
 	
 	
 				<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-		  <a class="navbar-brand" href="#">Scheduler by Jonathan</a>
+		  <a class="navbar-brand" href="#">Scheduler</a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
@@ -40,6 +40,14 @@
 		      </li>
 		    
 		    </ul>
+		    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <form class="form-inline my-2 my-lg-0">
+        <input class="form-control" id="begindate" name="begindate" placeholder="YYYY/MM/DD" type="text"/>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
 		   
 		    
 		  </div>
@@ -87,7 +95,7 @@
 		<thead>
 		<tr><td width="40%" align="left"><b>Name</b></td>
 		<td width="0%" align="left"><b>Status</b></td>
-		<td width="35%" align="left"><b>Phone number</b></td>
+		<td width="35%" align="left"><b>Transportation</b></td>
 		<td width="0%" align="left"><b>Edit</b></td>
 		
 		</tr>
@@ -153,7 +161,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Change Phone number:</label>
+                        <label class="control-label">Change Transportation:</label>
                         <div>
                             <input type="phonenumber" class="form-control input-lg" id="editphone" name="editphone" value="" placeholder="optional">
                         
@@ -225,7 +233,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Phone number:</label>
+                        <label class="control-label">Transportation:</label>
                         <div>
                             <input type="phonenumber" class="form-control input-lg" name="phonenumber" value="" placeholder="optional">
                         
