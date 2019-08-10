@@ -5,6 +5,7 @@ var eventDetails;
 var event;
 var users = [];
 var status;
+var eventValidator;
 
 $(document).ready(function(){
     var date_input=$('input[name="begindate"]'); 
@@ -33,54 +34,74 @@ $(document).ready(function(){
    
 })
 $( document ).ready(function(){
-	$('#queryDate').change(function() {
+	$('#queryDate').datepicker().on('changeDate', function(e) {
+		var date = $(this).val();
+		document.getElementById("queryDate").value = date;
+		$("#users > tbody").empty();
+		status = 1;
+		users= [];
+        clearData();
+        console.log("query change detected")
+		onLaunch();
+	    
+	});
+	
+	
+	/*$('#queryDate').change(function() {
 	    var date = $(this).val();
 		document.getElementById("queryDate").value = date;
 		$("#users > tbody").empty();
 		status = 1;
 		users= [];
         clearData();
+        console.log("query change detected")
 		onLaunch();
 
-	});
+	});*/
 	
 	
 });
 
 
 $( document ).ready(function(){
+	
+	
 	$('#submit-event').click(function(event){
-		$.ajax({
-		    type:"POST",
-		    url: "EventServlet",
-		    data: $("#formEvent").serialize()+"&createEvent=1" ,
-		    success: function(data){
-		        $('#myModal').click()
-
-		    	 $("#success-alert-event").fadeIn("slow",function(){
-			            setTimeout(function(){
-			              $("#success-alert-event").fadeOut("slow");
-			            },4000);
-			          });
-		        
-		        clearData();
-		        onLaunch();
-				
-
-		    },
-		    error: function(data){
-		    	$('#myModal').click()
-
-		    	 $("#failure-alert-event").fadeIn("slow",function(){
-			            setTimeout(function(){
-			              $("#failure-alert-event").fadeOut("slow");
-			            },4000);
-			          });
-		    	
-		    	
-		    }
-		});
+		
+		if($("#formEvent").valid()){
+			$.ajax({
+			    type:"POST",
+			    url: "EventServlet",
+			    data: $("#formEvent").serialize()+"&createEvent=1" ,
+			    success: function(data){
+			        $('#myModal').click()
+	
+			    	 $("#success-alert-event").fadeIn("slow",function(){
+				            setTimeout(function(){
+				              $("#success-alert-event").fadeOut("slow");
+				            },4000);
+				          });
+			        
+			        clearData();
+			        onLaunch();
+					
+	
+			    },
+			    error: function(data){
+			    	$('#myModal').click()
+	
+			    	 $("#failure-alert-event").fadeIn("slow",function(){
+				            setTimeout(function(){
+				              $("#failure-alert-event").fadeOut("slow");
+				            },4000);
+				          });
+			    	
+			    	
+			    }
+			});
+		}
 	});
+	
 	
 	
 	
@@ -269,11 +290,6 @@ $( document ).ready(function() {
     $('#deleteEventButton').hide()
     $('#addUserButton').hide()
 
-	
-	//TODO: FIX LOADING DATES. 
-    
-
-	
 	var dateObj = new Date();
 	var month = dateObj.getUTCMonth() + 1; //months from 1-12
 	var day = dateObj.getUTCDate();
@@ -281,11 +297,68 @@ $( document ).ready(function() {
 
 	newdate = year + "-0" + month + "-" + day;
 	bsDate = year + "/0" + month + "/" + day;
-	//document.getElementById("queryDate").value = newdate;
 	document.getElementById("queryDate").value = bsDate;
 	status = 0;
 
+	jQuery.validator.setDefaults({
+	    errorElement: 'span',
+	    errorPlacement: function (error, element) {
+	        error.addClass('invalid-feedback');
+	        element.closest('.form-group').append(error);
+	    },
+	    highlight: function (element, errorClass, validClass) {
+	        $(element).addClass('is-invalid');
+	    },
+	    unhighlight: function (element, errorClass, validClass) {
+	        $(element).removeClass('is-invalid');
+	    }
+	});
 	
+	 eventValidator = $("#formEvent").validate({
+	        rules: {
+	            eventname: {
+	                required: true,
+	                minlength: 3
+	            },
+	            begindate: {
+	                required: true,
+	                date: true
+	            },
+	            enddate:  {
+	                required: true,
+	                date: true
+	            }
+	        },
+
+	        // Specify the validation error messages
+	        messages: {
+	        	formEventName: {
+	                required: "Please provide an event name",
+	                minlength: "Your event name must be at least 3 characters long"
+	            },
+	            begindate: {
+	                required: "Please provide a date",
+	                date: "Must be a valid date"
+	            },
+	            enddate: {
+	                required: "Please provide a date",
+	                date: "Must be a valid date"
+	            }
+	        },
+	        highlight: function (element, errorClass) {
+	                $(element).closest('.form-control').addClass('has-error');
+	                //$(element).addClass('has-error');
+	            },
+	            unhighlight: function (element, errorClass) {
+	                $(element).closest(".form-control").removeClass("has-error");
+	            },
+	        
+
+	    });
+	 
+	 $("#myModal").on("hidden.bs.modal", function () {
+		    resetEventForm();
+		});
 	
 	
 	onLaunch();
@@ -303,9 +376,22 @@ function clearData(){
     
 
 }
+
+function resetEventForm(){
+	document.getElementById("formEvent").reset(); //native JS
+	eventValidator.resetForm();
+	$('.form-group').each(function () { $('#formEvent').removeClass('has-success'); });
+	$('.form-group').each(function () { $('#formEvent').removeClass('has-error'); });
+	$('.form-group').each(function () { $('#formEvent').removeClass('has-feedback'); });
+	$('.help-block').each(function () { $('#formEvent').remove(); });
+	$('.form-control-feedback').each(function () { $(this).remove(); });
+	
+}
+
+
 function onLaunch(){
 	
-
+	console.log("onlaunch called");
 	loadEventData();
 	
 	
@@ -329,14 +415,6 @@ function loadEventData(){
 	
 }
 
-function eventFormValidation(){
-	var status=0;
-	
-//	formEventName
-	
-	
-	
-}
 
 function defaultLoad(data){
 
