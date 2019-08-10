@@ -9,6 +9,7 @@ var status;
 $(document).ready(function(){
     var date_input=$('input[name="begindate"]'); 
     var date_input2=$('input[name="enddate"]'); 
+    var bs_query=$('input[name="bsQuery"]');
 
     var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
     var options={
@@ -17,8 +18,16 @@ $(document).ready(function(){
       todayHighlight: false,
       autoclose: true,
     };
+
+    
+    bs_query.datepicker(options);
     date_input.datepicker(options);
     date_input2.datepicker(options);
+    
+    
+    
+    
+    
     
     
    
@@ -271,7 +280,9 @@ $( document ).ready(function() {
 	var year = dateObj.getUTCFullYear();
 
 	newdate = year + "-0" + month + "-" + day;
-	document.getElementById("queryDate").value = newdate
+	bsDate = year + "/0" + month + "/" + day;
+	//document.getElementById("queryDate").value = newdate;
+	document.getElementById("queryDate").value = bsDate;
 	status = 0;
 
 	

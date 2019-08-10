@@ -20,38 +20,42 @@
 	
 	<body>
 	
-	<div id="container">
+
 	
-	
-	
-				<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-		  <a class="navbar-brand" href="#">Scheduler</a>
-		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-		    <span class="navbar-toggler-icon"></span>
-		  </button>
-		
-		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-		    <ul class="navbar-nav mx-left">
-		      <li class="nav-item active">
-		        <a class="nav-link" href="#">Home</a>
-		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link" href="#">Log in</a>
-		      </li>
-		    
-		    </ul>
-		    <form class="form-inline my-2 my-lg-0">
+				<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">
+    <img src="images/scheduler-logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    Scheduler
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Admin Page</a>
+      </li>
+      
+      
+    </ul>
+    
+    
+    <div style="margin: 0 auto;"> 
+ <form class="form-inline my-2 my-lg-0" style="margin: 0 auto;">
+       <input class="form-control" id="queryDate" name="bsQuery" placeholder="MM/DD/YYYY" type="text"/>
+    </form>    
+    </div>
+    
+    <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
-    <form class="form-inline my-2 my-lg-0">
-        <input class="form-control" id="begindate" name="begindate" placeholder="YYYY/MM/DD" type="text"/>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-		   
-		    
-		  </div>
-		</nav>
+  </div>
+</nav>
 			<div id="failure-alert-event" class="alert alert-danger alert-dismissable collapse">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <strong>Failure!</strong> Event already exists for this date.
@@ -77,9 +81,9 @@
             <strong>Success!</strong> Event deleted.
         </div>
 		<div style="text-align: center; background: white">
-			<label for="start">Select Date Event:</label>
-			<input type="date" id="queryDate" name="getDate" value="2019-06-26">
-		
+<!-- 			<label for="start">Select Date Event:</label>
+ --><!-- 			<input type="date" id="queryDate" name="getDate" value="2019-06-26">
+ -->		
 		</div>
 		
 		
