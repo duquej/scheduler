@@ -41,7 +41,6 @@ $( document ).ready(function(){
 		status = 1;
 		users= [];
         clearData();
-        console.log("query change detected")
 		onLaunch();
 	    
 	});
@@ -359,16 +358,37 @@ $( document ).ready(function() {
 	 $("#myModal").on("hidden.bs.modal", function () {
 		    resetEventForm();
 		});
+	 
+	 $("#eventSearch").on("submit", function(){
+		 $.ajax({
+			    type:"POST",
+			    url: "EventServlet",
+			    data: $("#eventSearch").serialize()+"&createEvent=0&addUser=0&eventSearch=1&deleteEvent=0" ,
+			    success: function(data){
+			    	window.location.href = "search.html";
+			    	console.log(data);
+			    	loadSearchResults(data);
+
+
+			    },
+			    error: function(data){
+			    	alert($("#eventSearch").serialize()+"&eventSearch=1");
+			    	
+			    }
+			});
+		   return false;
+		 })
 	
-	
-	onLaunch();
+	if (window.location.pathname == "/modification/") {
+		onLaunch();
+	}
 });
 
 function clearData(){
 	users= [];
 	$("#users > tbody").empty();
-	eventname.innerText = "Event: No event.";
-	eventdates.innerText = "Dates: ";
+	eventname.innerText = "No Event Scheduled";
+	eventdates.innerText = " ";
 	eventDetails=null;
     $('#deleteEventButton').hide()
     $('#addUserButton').hide()

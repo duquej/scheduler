@@ -1,0 +1,146 @@
+<html>
+	<head>
+	
+<link rel="icon" href="images/scheduler-logo.png" type="image/icon type">
+	<title>
+	Scheduler
+	</title>
+	
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+	
+	<script type="text/javascript" src="js/searchFactory.js"></script>
+	<script type="text/javascript" src="js/functions.js"></script>
+	
+	
+	</head>
+	
+	<body>
+	
+
+	
+				<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">
+    <img src="images/scheduler-logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    Scheduler
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+     <!--  <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Admin Page</a>
+      </li> -->
+      
+      
+    </ul>
+    
+    
+    <div style="margin: 0 auto;"> 
+ <form class="form-inline my-2 my-lg-0" style="margin: 0 auto;">
+       <input class="form-control" id="queryDate" name="bsQuery" placeholder="MM/DD/YYYY" type="text"/>
+    </form>    
+    </div>
+    
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+			
+        <div id="success-alert-user" class="alert alert-success alert-dismissable collapse">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>Success!</strong> User added.
+        </div>
+       
+		<div style="text-align: center; background: white">
+<!-- 			<label for="start">Select Date Event:</label>
+ --><!-- 			<input type="date" id="queryDate" name="getDate" value="2019-06-26">
+ -->		
+		</div>
+		
+		
+		
+		
+		<div style="text-align:center">
+		<h1 id="resultsnum"> No Results Found</h1>
+		</div>
+		
+		<div>
+		
+		<div class="pre-scrollable">
+		<table id = "events" class="table table-striped" width="85%" align="center">
+		<thead>
+		<tr><td width="40%" align="left"><b>Event Name</b></td>
+		<td width="0%" align="left"><b>Begin Date</b></td>
+		<td width="35%" align="left"><b>End Date</b></td>
+		<td width="0%" align="left"><b>View</b></td>
+		
+		</tr>
+		</thead>
+		
+		<tbody>
+		
+		</tbody>
+		
+		
+		
+		
+	
+		
+		
+		</table>
+		</div>
+		
+		
+		
+		<div style="text-align:center">
+		
+			
+				
+		
+		
+		
+		</div>
+		
+		
+		</div>
+		
+		
+						
+		
+				<!-- Modal -->
+		
+		
+		
+		
+	
+		
+	
+	</div>
+	
+	
+	
+	</body>
+
+</html>

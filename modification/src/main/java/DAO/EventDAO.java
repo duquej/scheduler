@@ -72,12 +72,21 @@ public class EventDAO {
             return session.createQuery("From Event").list();
         }
     }
-    //SELECT * FROM   scheduler.events ORDER  BY begin_date DESC LIMIT  1;
+
     @SuppressWarnings("unchecked")
 	public List<Event> findMostRecent() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery("From Event ORDER BY beginDate DESC").setMaxResults(1).list();
         }
+    }
+    //SELECT * FROM events WHERE event_name LIKE '%rashid cookout%' 
+    public List<Event> findEventByName(String event){
+    	try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+    		System.out.println("From Event WHERE name LIKE '%"+event+"%'");
+            return session.createQuery("From Event WHERE name LIKE '%"+event+"%'").list();
+        }
+    	
+    	
     }
     
     public void delete(int id) {

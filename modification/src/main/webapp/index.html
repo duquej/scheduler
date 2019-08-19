@@ -1,5 +1,12 @@
 <html>
 	<head>
+	
+<link rel="icon" href="images/scheduler-logo.png" type="image/icon type">
+	<title>
+	Scheduler
+	</title>
+	
+	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 	<!-- jQuery library -->
@@ -15,6 +22,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="js/searchFactory.js"></script>
+	
 	<script type="text/javascript" src="js/functions.js"></script>
 	
 	
@@ -52,8 +61,8 @@
     </form>    
     </div>
     
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <form class="form-inline my-2 my-lg-0" id="eventSearch">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
@@ -89,9 +98,11 @@
 		</div>
 		
 		
+		
+		
 		<div style="text-align:center">
 		<h1 id="eventname">No Ongoing Event Today</h1>
-		<h2 id="eventdates">Dates: Null - Null</h2>
+		<h2 id="eventdates">Available all day.</h2>
 		</div>
 		
 		<div>

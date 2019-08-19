@@ -151,6 +151,20 @@ public class EventServlet extends HttpServlet {
 			
 			
 			
+		} else if (request.getParameter("eventSearch").equals("1")) {
+			String event = request.getParameter("search");
+			List<Event> foundEvents = eventDAO.findEventByName(event);
+			
+			Gson gson = new GsonBuilder().create();
+			String json = gson.toJson(foundEvents);
+			
+			
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(json);;
+			
+			
+			
 		}
 	}
 
