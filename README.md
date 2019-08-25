@@ -1,10 +1,10 @@
 # Scheduler
 
-A scheduling web application that allows users to create an event on a particular date and assign the expected attendees to that event. When assigning an attendee, the user has the option to set the attendees transportation mode and current status. An attendees status may be set to either Attending, not attending, maybe, and unknown. The scheduling web application allows users to see events planned for any date and prohibits the creation of events on overlapping dates. 
+A scheduling web application that allows users to create an event on a particular date and assign attendees to that event. When assigning an attendee, the user has the option to set the attendees transportation mode and current status. An attendees status may be set to either Attending, not attending, maybe, and unknown. The scheduling web application allows users to see events planned for any date and prohibits the creation of events on overlapping dates. 
 
 ## Getting Started
 
-Fork the project to your IDE of choice and run it.
+WIP 
 
 ### Prerequisites
 
@@ -61,13 +61,13 @@ WIP
 
 ## Authors
 
-* **Jonathan Duque Thompson**
+* **Jonathan Duque**
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-## Acknowledgments
+## Inspiration
 
 * I felt inspired to create this web application after my friends and I struggled to cordinate events.
 
