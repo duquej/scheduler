@@ -1,6 +1,7 @@
 function loadSearchResults(data){
 	
-	resultsnum.innerText = data.length + " Events found";
+	document.getElementById("resultsnum").innerText = data.length + " Events found";
+
 
 	for (var i =0; i < data.length; i++){
 		console.log(data[i].name);

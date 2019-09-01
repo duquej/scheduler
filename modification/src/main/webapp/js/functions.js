@@ -25,16 +25,7 @@ $(document).ready(function(){
     date_input.datepicker(options);
     date_input2.datepicker(options);
     
-    
-    
-    
-    
-    
-    
-   
-})
-$( document ).ready(function(){
-	$('#queryDate').datepicker().on('changeDate', function(e) {
+    $('#queryDate').datepicker().on('changeDate', function(e) {
 		var date = $(this).val();
 		document.getElementById("queryDate").value = date;
 		$("#users > tbody").empty();
@@ -44,27 +35,8 @@ $( document ).ready(function(){
 		onLaunch();
 	    
 	});
-	
-	
-	/*$('#queryDate').change(function() {
-	    var date = $(this).val();
-		document.getElementById("queryDate").value = date;
-		$("#users > tbody").empty();
-		status = 1;
-		users= [];
-        clearData();
-        console.log("query change detected")
-		onLaunch();
-
-	});*/
-	
-	
-});
-
-
-$( document ).ready(function(){
-	
-	
+    
+    
 	$('#submit-event').click(function(event){
 		
 		if($("#formEvent").valid()){
@@ -101,13 +73,6 @@ $( document ).ready(function(){
 		}
 	});
 	
-	
-	
-	
-	
-});
-
-$( document ).ready(function(){
 	$('#submit-delete-event').click(function(event){
 		$.ajax({
 		    type:"POST",
@@ -134,12 +99,6 @@ $( document ).ready(function(){
 		});
 	});
 	
-	
-	
-	
-});
-
-$( document ).ready(function(){
 	$('#submit-edit').click(function(event){
 		$.ajax({
 		    type:"POST",
@@ -166,12 +125,6 @@ $( document ).ready(function(){
 		});
 	});
 	
-	
-	
-	
-});
-
-$( document ).ready(function(){
 	$('#submit-user').click(function(event){
 		$.ajax({
 		    type:"POST",
@@ -198,43 +151,45 @@ $( document ).ready(function(){
 		});
 	});
 	
-	
-	
-	
-});
-
-$( document ).ready(function(){
 	$('#submit-delete').click(function(event){
-		
-		$.ajax({
-		    type:"POST",
-		    url: "UserServlet",
-		    data: $("#formEdit").serialize()+"&deleteUser=1" ,
-		    success: function(data){
-		        $('#myEdit').click()
-
-		        $("#success-alert-user-delete").fadeIn("slow",function(){
-		            setTimeout(function(){
-		              $("#success-alert-user-delete").fadeOut("slow");
-		            },4000);
-		          });
-		        
-		        clearData();
-		        onLaunch();
-
-
-		    },
-		    error: function(data){
-		    	alert($("#formEdit").serialize()+"&deleteUser=1");
-		    	
-		    }
+			
+			$.ajax({
+			    type:"POST",
+			    url: "UserServlet",
+			    data: $("#formEdit").serialize()+"&deleteUser=1" ,
+			    success: function(data){
+			        $('#myEdit').click()
+	
+			        $("#success-alert-user-delete").fadeIn("slow",function(){
+			            setTimeout(function(){
+			              $("#success-alert-user-delete").fadeOut("slow");
+			            },4000);
+			          });
+			        
+			        clearData();
+			        onLaunch();
+	
+	
+			    },
+			    error: function(data){
+			    	alert($("#formEdit").serialize()+"&deleteUser=1");
+			    	
+			    }
+			});
 		});
-	});
 	
 	
-	
-	
-});
+    
+    
+    
+    
+    
+    
+    
+   
+})
+
+
 
 $( document ).ready(function(){
 	
@@ -514,7 +469,6 @@ function imageDisplayControl(data){
 }
 
 function userOptions(id){
-	//$('#myEdit').show();
 	var user;
 	
 	for(var i=0; i<users.length; i++){

@@ -22,24 +22,15 @@ public class User implements Serializable {
 	private String phoneNumber;
 
 	
-    //@ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-	//@ManyToMany(mappedBy = "users",cascade = { CascadeType.ALL }, fetch = FetchType.EAGER )
-	//private List<Event> events;
-	
 	@Column(name="status")
 	private int status;
 	 
 
-	/**
-	 * @return the status
-	 */
 	public int getStatus() {
 		return status;
 	}
 
-	/**
-	 * @param status the status to set
-	 */
+	
 	public void setStatus(int status) {
 		this.status = status;
 	}
@@ -52,37 +43,27 @@ public class User implements Serializable {
 		return id;
 	}
 
-	/**
-	 * @param id the id to set
-	 */
+	
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	/**
-	 * @return the name
-	 */
+	
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * @param name the name to set
-	 */
+	
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	/**
-	 * @return the phoneNumber
-	 */
+	
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	/**
-	 * @param phoneNumber the phoneNumber to set
-	 */
+	
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
@@ -92,15 +73,7 @@ public class User implements Serializable {
 		return "User [id=" + id + ", name=" + name + ", phoneNumber=" + phoneNumber + ", status=" + status + "]";
 	}
 
-	/**
-	 * @return the events
-	 */
 	
-	// List<Event> getEvents() { 
-	//	return events;
-	//	}
-	
-	//public void setEvents(List<Event> events) { this.events = events; }
 			 
 	
 
