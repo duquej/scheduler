@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DAO.UserDAO;
+import Services.UserService;
 import classes.Event;
 import classes.User;
 
@@ -20,14 +21,14 @@ import classes.User;
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private UserDAO dao;
+	private UserService service;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public UserServlet() {
         super();
-        dao = new UserDAO();
+        service = new UserService();
         // TODO Auto-generated constructor stub
     }
 
@@ -44,9 +45,9 @@ public class UserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		List<User> users = dao.findAll();
+		List<User> users = service.findAll();
 		if (request.getParameter("deleteUser").equals("1")) {
-			dao.delete(Integer.parseInt(request.getParameter("userID")));
+			service.delete(Integer.parseInt(request.getParameter("userID")));
 		} else if (request.getParameter("editUser").equals("1")) {
 			Integer userid = Integer.parseInt(request.getParameter("userID"));
 			String name = request.getParameter("editname");
@@ -80,7 +81,7 @@ public class UserServlet extends HttpServlet {
 			user.setPhoneNumber(phone);
 			user.setStatus(stat);
 			
-			dao.saveOrUpdate(user);
+			service.updateUser(user);
 			
 			
 			

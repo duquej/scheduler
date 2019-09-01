@@ -16,6 +16,8 @@ import com.google.gson.GsonBuilder;
 
 import DAO.EventDAO;
 import DAO.UserDAO;
+import Services.EventService;
+import Services.UserService;
 import classes.Event;
 import classes.User;
 
@@ -25,15 +27,14 @@ import classes.User;
 @WebServlet("/EventServlet")
 public class EventServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private EventDAO eventDAO;
-	private UserDAO userDAO;
+	private EventService eventService;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public EventServlet() {
         super();
-        eventDAO = new EventDAO();
+        eventService = new EventService();
     }
 
 	/**
@@ -48,9 +49,9 @@ public class EventServlet extends HttpServlet {
 		List<Event> events = new ArrayList<>();
 		
 		if (status.equals("1")) {
-			events = eventDAO.getEventByDate(parsedDate);
+			events = eventService.getEventByDate(parsedDate);
 		} else {
-			events = eventDAO.findMostRecent();
+			events = eventService.findMostRecent();
 		}
 		
 		Gson gson = new GsonBuilder().create();
@@ -74,7 +75,7 @@ public class EventServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Event> events = eventDAO.findAll();
+		List<Event> events = eventService.findAll();
 		
 		
 		if (request.getParameter("createEvent").equals("1")) {
@@ -83,7 +84,7 @@ public class EventServlet extends HttpServlet {
 			String endDate = request.getParameter("enddate");
 			
 			List<Event> allDateEvents = new ArrayList<>();
-			allDateEvents = eventDAO.getEventByDate("'"+startDate+"'");
+			allDateEvents = eventService.getEventByDate("'"+startDate+"'");
 			if (!allDateEvents.isEmpty()) {
 				throw new ServletException();
 			}
@@ -98,7 +99,7 @@ public class EventServlet extends HttpServlet {
 			event.setEndDate(parsedEnd);
 			event.setName(name);
 			
-			eventDAO.saveOrUpdate(event);
+			eventService.addEvent(event);
 			
 			
 			
@@ -139,21 +140,21 @@ public class EventServlet extends HttpServlet {
 			user.setStatus(stat);
 			event.getUsers().add(user);
 			
-			eventDAO.saveOrUpdate(event);
+			eventService.updateEvent(event);
 			
 			
 			
 			
 		} else if(request.getParameter("deleteEvent").equals("1")) {
 			Integer id = Integer.parseInt(request.getParameter("eventId"));
-			eventDAO.delete(id);
+			eventService.delete(id);
 			
 			
 			
 			
 		} else if (request.getParameter("eventSearch").equals("1")) {
 			String event = request.getParameter("search");
-			List<Event> foundEvents = eventDAO.findEventByName(event);
+			List<Event> foundEvents = eventService.findEventByName(event);
 			
 			Gson gson = new GsonBuilder().create();
 			String json = gson.toJson(foundEvents);

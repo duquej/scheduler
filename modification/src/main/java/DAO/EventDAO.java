@@ -12,50 +12,9 @@ import Hibernate.HibernateUtil;
 import classes.Event;
 import classes.User;
 
-public class EventDAO {
+public class EventDAO extends GenericHibernateDAO<Event, Integer>{
 	
-    public void saveEvent(Event event) {
-        Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-            session.save(event);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
-    }
-    @SuppressWarnings("unchecked")
-	public List <Event> getEvents() {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("From Event").list();
-        }
-    }
-    
-    public Event saveOrUpdate(Event t) {
-    	Transaction tx = null;
-    	
-    	try {
-    		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-    		tx = session.beginTransaction();
-    		session.saveOrUpdate(t);
-    		tx.commit();
-    		
-    		
-    	}catch(HibernateException e){
-    		if (tx != null) 
-    			tx.rollback();
-    		
-    		e.printStackTrace();
-    		return null;
-    		
-    	}
-		return t;
-    	
-    	
-    }
+
     
     @SuppressWarnings("unchecked")
 	public List <Event> getEventByDate(String date) {
@@ -64,12 +23,7 @@ public class EventDAO {
         }
     }
     
-    public List<Event> findAll() {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("From Event").list();
-        }
-    }
-
+  
     @SuppressWarnings("unchecked")
 	public List<Event> findMostRecent() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
