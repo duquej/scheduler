@@ -12,7 +12,7 @@ import org.hibernate.Transaction;
 import Hibernate.HibernateUtil;
 
 /**
- * 
+ * @author Jonathan Duque
  *  
  *  */
 public abstract class GenericHibernateDAO<T, ID extends Serializable> {

@@ -10,10 +10,13 @@ import classes.Event;
 import classes.EventHasUser;
 
 
- 
+/**Configures Hibernate with the configured settings and annotations in the classes package. */
 public class HibernateUtil {
     private static SessionFactory sessionFactory;
      
+    /**Initializes a Hibernate session with the configured settings if it has not yet been done so, otherwise, it
+     * returns the current session. 
+     *  */
     public static SessionFactory getSessionFactory() {
     	try {
 	        if (sessionFactory == null) {
