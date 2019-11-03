@@ -87,8 +87,10 @@ $(document).ready(function(){
 			            },4000);
 			          });
 		        
-		        clearData();
-		        onLaunch();
+		        window.location.href = "index.html";
+		        
+		        //clearData();
+		        //onLaunch();
 				
 
 		    },
@@ -165,6 +167,7 @@ $(document).ready(function(){
 			              $("#success-alert-user-delete").fadeOut("slow");
 			            },4000);
 			          });
+			        
 			        
 			        clearData();
 			        onLaunch();
@@ -390,6 +393,8 @@ function loadEventById(id){
 	    success: function(data){
 	        defaultLoad(data);
 	        event = data;
+	        status=6
+	        document.getElementById("queryDate").value = id
 	        
 	    }
 	});
