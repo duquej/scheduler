@@ -41,7 +41,7 @@ public class EventServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//List<Event> events = eventDAO.getEvents();
+		List<Event> findEvent = eventService.findAll();
 		
 		String date = request.getParameter("date");
 		String parsedDate = "'"+date+"'";
@@ -50,7 +50,23 @@ public class EventServlet extends HttpServlet {
 		
 		if (status.equals("1")) {
 			events = eventService.getEventByDate(parsedDate);
-		} else {
+		} else if (status.equals("5")){
+			events= eventService.findAll();
+			
+		}else if (status.equals("6")) {
+			List<Event> eventsMatched = new ArrayList<>();
+			for (int i=0; i < findEvent.size(); i++) {
+				if (findEvent.get(i).getId() == Integer.valueOf(date)) {
+					eventsMatched.add(findEvent.get(i));
+					events= eventsMatched;
+					
+				} 
+			}
+			
+			
+			
+			
+		}else {
 			events = eventService.findMostRecent();
 		}
 		

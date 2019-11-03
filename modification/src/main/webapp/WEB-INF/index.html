@@ -24,7 +24,7 @@
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
 	<script type="text/javascript" src="js/searchFactory.js"></script>
 	
-	<script type="text/javascript" src="js/loadFactory.js"></script>
+	<script type="text/javascript" src="js/functions.js"></script>
 	
 	
 	</head>
@@ -67,10 +67,6 @@
     </form>
   </div>
 </nav>
-
-			<div class="alert alert-info">
-  <strong>Note!</strong> This is still under development; currently only one event allowed per day. 
-</div>
 			<div id="failure-alert-event" class="alert alert-danger alert-dismissable collapse">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <strong>Failure!</strong> Event already exists for this date.
@@ -114,10 +110,10 @@
 		<div class="pre-scrollable">
 		<table id = "users" class="table table-striped" width="85%" align="center">
 		<thead>
-		<tr><td width="40%" align="left"><b>Event Name</b></td>
+		<tr><td width="40%" align="left"><b>Name</b></td>
 		<td width="0%" align="left"><b>Status</b></td>
-		<td width="35%" align="left"><b>Dates</b></td>
-		<td width="0%" align="left"><b>Display</b></td>
+		<td width="35%" align="left"><b>Transportation</b></td>
+		<td width="0%" align="left"><b>Edit</b></td>
 		
 		</tr>
 		</thead>

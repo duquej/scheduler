@@ -334,10 +334,20 @@ $( document ).ready(function() {
 		   return false;
 		 })
 	
-	if (window.location.pathname == "/modification/") {
-		onLaunch();
-	}
+		 
+	
+	var id=getUrlVars()["id"];
+	loadEventById(id);
+	
 });
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
 
 function clearData(){
 	users= [];
@@ -368,6 +378,22 @@ function onLaunch(){
 	
 	console.log("onlaunch called");
 	loadEventData();
+	
+	
+}
+
+function loadEventById(id){
+	$.ajax({
+	    type:"GET",
+	    url: "EventServlet",
+	    data:"date="+id +"&default="+6,
+	    success: function(data){
+	        defaultLoad(data);
+	        event = data;
+	        
+	    }
+	});
+	
 	
 	
 }
