@@ -1,3 +1,10 @@
+$( document ).ready(function() {
+	contactServlet();
+	
+	
+})
+
+
 function loadSearchResults(data){
 	
 	document.getElementById("resultsnum").innerText = data.length + " Events found";
@@ -20,6 +27,29 @@ function loadSearchResults(data){
 	
 }
 
+
+function contactServlet(){
+	var searchVar = getUrlVars()["search"];
+	
+	 $.ajax({
+		    type:"POST",
+		    url: "EventServlet",
+		    data: "search="+searchVar+"&createEvent=0&addUser=0&eventSearch=1&deleteEvent=0" ,
+		    success: function(data){
+		    	console.log(data);
+		    	loadSearchResults(data);
+
+		    },
+		    error: function(data){
+		    	alert("fail");
+		    	
+		    }
+		});
+	
+	
+	
+	
+}
 function clearSearchResults(){
 	
 }

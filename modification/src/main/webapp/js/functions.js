@@ -318,23 +318,8 @@ $( document ).ready(function() {
 		});
 	 
 	 $("#eventSearch").on("submit", function(){
-		 $.ajax({
-			    type:"POST",
-			    url: "EventServlet",
-			    data: $("#eventSearch").serialize()+"&createEvent=0&addUser=0&eventSearch=1&deleteEvent=0" ,
-			    success: function(data){
-			    	window.location.href = "search.html";
-			    	console.log(data);
-			    	loadSearchResults(data);
-
-
-			    },
-			    error: function(data){
-			    	alert($("#eventSearch").serialize()+"&eventSearch=1");
-			    	
-			    }
-			});
-		   return false;
+	     window.location.href = "search.html?"+$("#eventSearch").serialize();
+	     return false;
 		 })
 	
 		 
