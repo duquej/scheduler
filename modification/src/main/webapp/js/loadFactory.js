@@ -106,7 +106,6 @@ function resetEventsTable(){
 	events= [];
 	$("#users > tbody").empty();
 	eventname.innerText = "0 Events";
-	eventdates.innerText = " ";
     $('#deleteEventButton').hide()
     $('#addUserButton').hide()
 
@@ -131,7 +130,6 @@ function displayAllEvents(data){
 		
 			});
 	eventname.innerText = totalEvents+" Events Found";
-	eventdates.innerText = " ";
 		
 
 	
