@@ -35,21 +35,12 @@ _For more examples and usage, please refer to the [Wiki][wiki]._
 
 ## Development setup
 
-Describe how to install all development dependencies and how to run an automated test-suite of some kind. Potentially do this for multiple platforms.
+TO DO.
 
-```sh
-make install
-npm test
-```
-
-## Release History
-
-* 0.0.1
-    * Initial set up
 
 ## Meta
 
-Jonathan Duque – [@YourTwitter](https://twitter.com/dbader_org) – jd849@cornell.edu
+Jonathan Duque – jd849@cornell.edu
 
 Distributed under the MIT license. See ``LICENSE`` for more information.
 
