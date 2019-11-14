@@ -1,9 +1,8 @@
-# Scheduler
+# Scheduler Web App
 > A Scheduling web application intended for groups of all sizes to coordinate their upcoming events with ease.
 
 [![NPM Version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
 
 Scheduler allows groups of all sizes to schedule their events on any given available date. For ease of use, scheduler allows any user to modify the event's expected attendees in order to remove the hassle of having each independent user update their own status manually. No longer are the days of struggling to coordinate events in your friend group or consistently asking each person whether they are attending or not. You can now just check the groups status with a couple of clicks!
 
