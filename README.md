@@ -7,6 +7,8 @@
 Scheduler allows groups of all sizes to schedule their events on any given available date. For ease of use, scheduler allows any user to modify the event's expected attendees in order to remove the hassle of having each independent user update their own status manually. No longer are the days of struggling to coordinate events in your friend group or consistently asking each person whether they are attending or not. You can now just check the groups status with a couple of clicks!
 
 
+
+
 ![](header.png)
 
 ## Installation
@@ -42,16 +44,6 @@ npm test
 
 ## Release History
 
-* 0.2.1
-    * CHANGE: 
-* 0.2.0
-    * CHANGE: Remove `setDefaultXYZ()`
-    * ADD: Add `init()`
-* 0.1.1
-    * FIX: Crash when calling `baz()` (Thanks @GenerousContributorName!)
-* 0.1.0
-    * Created 
-    * CHANGE: Rename 
 * 0.0.1
     * Initial set up
 
@@ -65,7 +57,7 @@ Distributed under the MIT license. See ``LICENSE`` for more information.
 
 ## Contributing
 
-1. Fork it (<https://github.com/yourname/yourproject/fork>)
+1. Fork it (<https://github.com/duquej/scheduler/fork>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
