@@ -1,6 +1,8 @@
 var events;
 
 $( document ).ready(function() {
+	
+	
 	var date_input=$('input[name="begindate"]'); 
     var date_input2=$('input[name="enddate"]'); 
     var bs_query=$('input[name="bsQuery"]');
@@ -20,6 +22,37 @@ $( document ).ready(function() {
     $('#deleteEventButton').hide()
     $('#addUserButton').hide()
     
+
+    authenticateUser();
+    if(!isLoggedIn()){
+    	$("#myToast").toast('show');
+	    $('#addEvent').hide()
+
+    } else {
+    	document.getElementById('signin-navbar').innerHTML = "Sign Out"
+    	$('#addEvent').show()
+
+    	
+    }
+    
+    
+    $('.date-picker').each(function(){
+        $(this).datepicker({
+            templates:{
+                leftArrow: '<i class="now-ui-icons arrows-1_minimal-left"></i>',
+                rightArrow: '<i class="now-ui-icons arrows-1_minimal-right"></i>'
+            }
+        }).on('show', function() {
+                $('.datepicker').addClass('open');
+
+                datepicker_color = $(this).data('datepicker-color');
+                if( datepicker_color.length != 0){
+                    $('.datepicker').addClass('datepicker-'+ datepicker_color +'');
+                }
+            }).on('hide', function() {
+                $('.datepicker').removeClass('open');
+            });
+    });
 	
 	$("#eventSearch").on("submit", function(){
 		 $.ajax({
@@ -28,7 +61,7 @@ $( document ).ready(function() {
 			    data: $("#eventSearch").serialize()+"&createEvent=0&addUser=0&eventSearch=1&deleteEvent=0" ,
 			    success: function(data){
 			    	window.location.href = "search.html";
-			    	console.log(data);
+			    	//console.log(data);
 			    	loadSearchResults(data);
 
 
@@ -86,7 +119,7 @@ function onPageLoad(){
 	    url: "EventServlet",
 	    data:"date="+"null" +"&default="+5,
 	    success: function(data){
-	        console.log(data);
+	        //console.log(data);
 	        displayAllEvents(data);
 	        events = data;
 	        
@@ -114,6 +147,106 @@ function resetEventsTable(){
 	
 }
 
+function authenticateUser(){
+	
+	
+	$('#signin-button').click(function(event){
+		
+		if (isLoggedIn()){
+			
+			console.log("calling is signing out....")
+			$.ajax({
+			    type:"POST",
+			    url: "auth",
+			    data: $("#signin").serialize()+"&signin=0" ,
+			    success: function(data){
+	
+			    	console.log(data)
+			    	 $("#success-alert-event").fadeIn("slow",function(){
+				            setTimeout(function(){
+				              $("#success-alert-event").fadeOut("slow");
+				            },4000);
+				          });
+			        
+			        //resetEventsTable();
+			        //onPageLoad();
+					
+	
+			    },
+			    error: function(data){
+	
+			    	 $("#failure-alert-event").fadeIn("slow",function(){
+				            setTimeout(function(){
+				              $("#failure-alert-event").fadeOut("slow");
+				            },4000);
+				          });
+			    	
+			    	
+			    }
+			});
+			
+			
+			
+			
+			
+		} else {
+			
+			console.log("calling signing in...")
+		
+			if($("#signin").valid()){
+				$.ajax({
+				    type:"POST",
+				    url: "auth",
+				    data: $("#signin").serialize()+"&signin=1" ,
+				    success: function(data){
+				        $('#login-register').click()
+				        
+				    	
+				        
+				        resetEventsTable();
+				        onPageLoad();
+				    	window.location.href = "index2.html";
+
+						
+		
+				    },
+				    error: function(data){
+				    	$('#login-register').click()
+				    	
+			             $(" <p style='color:red'> Login Failed. Please try again. </p>").insertAfter("checkbox-signin"); 
+			            
+		
+				    	 
+				    	
+				    	
+				    }
+				});
+			}
+	}
+	});
+	
+	
+}
+
+function isLoggedIn(){
+    var dc = document.cookie;
+    console.log(dc);
+	if (dc != ""){
+		console.log("signed in")
+		return true
+	} else {
+    //show validation message
+		console.log("not signed in.")
+		return false
+	}
+	
+	
+}
+
+function validateLoginData(){
+	
+	
+}
 
 function displayAllEvents(data){
 
@@ -131,7 +264,4 @@ function displayAllEvents(data){
 			});
 	eventname.innerText = totalEvents+" Events Found";
 		
-
-	
-	
 }
