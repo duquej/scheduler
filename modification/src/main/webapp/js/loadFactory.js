@@ -216,7 +216,11 @@ function authenticateUser(){
 			             $(" <p style='color:red'> Login Failed. Please try again. </p>").insertAfter("checkbox-signin"); 
 			            
 		
-				    	 
+				    	$("#failure-signin").fadeIn("slow",function(){
+				            setTimeout(function(){
+				              $("#failure-signin").fadeOut("slow");
+				            },4000);
+				          });
 				    	
 				    	
 				    }
