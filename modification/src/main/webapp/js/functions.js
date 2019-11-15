@@ -8,6 +8,10 @@ var status;
 var eventValidator;
 
 $(document).ready(function(){
+	loginHandler();
+	initializeSignInButton();
+	signInButtonLogic();
+	
     var date_input=$('input[name="begindate"]'); 
     var date_input2=$('input[name="enddate"]'); 
     var bs_query=$('input[name="bsQuery"]');
@@ -35,6 +39,25 @@ $(document).ready(function(){
 		onLaunch();
 	    
 	});
+    
+    
+    $('.date-picker').each(function(){
+        $(this).datepicker({
+            templates:{
+                leftArrow: '<i class="now-ui-icons arrows-1_minimal-left"></i>',
+                rightArrow: '<i class="now-ui-icons arrows-1_minimal-right"></i>'
+            }
+        }).on('show', function() {
+                $('.datepicker').addClass('open');
+
+                datepicker_color = $(this).data('datepicker-color');
+                if( datepicker_color.length != 0){
+                    $('.datepicker').addClass('datepicker-'+ datepicker_color +'');
+                }
+            }).on('hide', function() {
+                $('.datepicker').removeClass('open');
+            });
+    });
     
     
 	$('#submit-event').click(function(event){

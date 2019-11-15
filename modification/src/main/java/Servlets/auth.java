@@ -66,7 +66,7 @@ public class auth extends HttpServlet {
 	            Cookie message = new Cookie("message", "success");
 	            response.addCookie(message);
 	            response.setStatus(HttpServletResponse.SC_OK);
-	            response.sendRedirect("index2.html");
+	            response.sendRedirect("index.html");
 				
 			    //request.getSession().setAttribute("loggedIn", "true");
 			    
@@ -106,7 +106,7 @@ public class auth extends HttpServlet {
 		             }
 		         }
 		        
-		        response.sendRedirect("index2.html");
+		        response.sendRedirect("index.html");
 
 		     }			
 			

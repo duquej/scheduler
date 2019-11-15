@@ -24,6 +24,8 @@ $( document ).ready(function() {
     
 
     authenticateUser();
+    signInButtonLogic();
+    
     if(!isLoggedIn()){
     	$("#myToast").toast('show');
 	    $('#addEvent').hide()
@@ -129,6 +131,59 @@ function onPageLoad(){
 	
 }
 
+function signInButtonLogic(){
+	
+	$('#signin-navbar').click(function(event){
+		if (!isLoggedIn()){
+			$('#login-test').modal('show');
+		} else {
+			console.log("calling logout post")
+			$.ajax({
+			    type:"POST",
+			    url: "auth",
+			    data: $("#signin").serialize()+"&signin=0" ,
+			    success: function(data){
+	
+			    	console.log(data)
+			    	 $("#success-alert-event").fadeIn("slow",function(){
+				            setTimeout(function(){
+				              $("#success-alert-event").fadeOut("slow");
+				            },4000);
+				          });
+			        
+			        //resetEventsTable();
+			        //onPageLoad();
+			    	window.location.href = "index.html";
+
+					
+	
+			    },
+			    error: function(data){
+	
+			    	 $("#failure-alert-event").fadeIn("slow",function(){
+				            setTimeout(function(){
+				              $("#failure-alert-event").fadeOut("slow");
+				            },4000);
+				          });
+			    	
+			    	
+			    }
+			});
+			
+			
+		}
+
+		
+		
+		
+		
+		
+	})
+	
+	
+	
+}
+
 function displayEventById(id){
 	window.location.href = "event.html?id="+id;
 	
@@ -205,7 +260,7 @@ function authenticateUser(){
 				        
 				        resetEventsTable();
 				        onPageLoad();
-				    	window.location.href = "index2.html";
+				    	window.location.href = "index.html";
 
 						
 		
