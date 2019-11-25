@@ -22,9 +22,10 @@ $( document ).ready(function() {
     $('#deleteEventButton').hide()
     $('#addUserButton').hide()
     
-
-    authenticateUser();
-    signInButtonLogic();
+    loginHandler();
+	initializeSignInButton();
+	signInButtonLogic();
+	registrationHandler();
     
     if(!isLoggedIn()){
     	$("#myToast").toast('show');
@@ -131,58 +132,6 @@ function onPageLoad(){
 	
 }
 
-function signInButtonLogic(){
-	
-	$('#signin-navbar').click(function(event){
-		if (!isLoggedIn()){
-			$('#login-test').modal('show');
-		} else {
-			console.log("calling logout post")
-			$.ajax({
-			    type:"POST",
-			    url: "auth",
-			    data: $("#signin").serialize()+"&signin=0" ,
-			    success: function(data){
-	
-			    	console.log(data)
-			    	 $("#success-alert-event").fadeIn("slow",function(){
-				            setTimeout(function(){
-				              $("#success-alert-event").fadeOut("slow");
-				            },4000);
-				          });
-			        
-			        //resetEventsTable();
-			        //onPageLoad();
-			    	window.location.href = "index.html";
-
-					
-	
-			    },
-			    error: function(data){
-	
-			    	 $("#failure-alert-event").fadeIn("slow",function(){
-				            setTimeout(function(){
-				              $("#failure-alert-event").fadeOut("slow");
-				            },4000);
-				          });
-			    	
-			    	
-			    }
-			});
-			
-			
-		}
-
-		
-		
-		
-		
-		
-	})
-	
-	
-	
-}
 
 function displayEventById(id){
 	window.location.href = "event.html?id="+id;
@@ -202,105 +151,9 @@ function resetEventsTable(){
 	
 }
 
-function authenticateUser(){
-	
-	
-	$('#signin-button').click(function(event){
-		
-		if (isLoggedIn()){
-			
-			console.log("calling is signing out....")
-			$.ajax({
-			    type:"POST",
-			    url: "auth",
-			    data: $("#signin").serialize()+"&signin=0" ,
-			    success: function(data){
-	
-			    	console.log(data)
-			    	 $("#success-alert-event").fadeIn("slow",function(){
-				            setTimeout(function(){
-				              $("#success-alert-event").fadeOut("slow");
-				            },4000);
-				          });
-			        
-			        //resetEventsTable();
-			        //onPageLoad();
-					
-	
-			    },
-			    error: function(data){
-	
-			    	 $("#failure-alert-event").fadeIn("slow",function(){
-				            setTimeout(function(){
-				              $("#failure-alert-event").fadeOut("slow");
-				            },4000);
-				          });
-			    	
-			    	
-			    }
-			});
-			
-			
-			
-			
-			
-		} else {
-			
-			console.log("calling signing in...")
-		
-			if($("#signin").valid()){
-				$.ajax({
-				    type:"POST",
-				    url: "auth",
-				    data: $("#signin").serialize()+"&signin=1" ,
-				    success: function(data){
-				        $('#login-register').click()
-				        
-				    	
-				        
-				        resetEventsTable();
-				        onPageLoad();
-				    	window.location.href = "index.html";
 
-						
-		
-				    },
-				    error: function(data){
-				    	$('#login-register').click()
-				    	
-			             $(" <p style='color:red'> Login Failed. Please try again. </p>").insertAfter("checkbox-signin"); 
-			            
-		
-				    	$("#failure-signin").fadeIn("slow",function(){
-				            setTimeout(function(){
-				              $("#failure-signin").fadeOut("slow");
-				            },4000);
-				          });
-				    	
-				    	
-				    }
-				});
-			}
-	}
-	});
-	
-	
-}
 
-function isLoggedIn(){
-    var dc = document.cookie;
-    console.log(dc);
-	if (dc != ""){
-		console.log("signed in")
-		return true
-	} else {
-    //show validation message
-		console.log("not signed in.")
-		return false
-	}
-	
-	
-}
+
 
 function validateLoginData(){
 	

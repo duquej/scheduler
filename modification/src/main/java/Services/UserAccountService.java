@@ -26,7 +26,7 @@ public class UserAccountService {
 		
 	}
 	
-	public UserAccount addEvent(UserAccount t) {
+	public UserAccount addUser(UserAccount t) {
 		return getDAO().saveOrUpdate(t);
 	}
 	

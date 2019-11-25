@@ -269,7 +269,9 @@ $( document ).ready(function() {
 	
     $('#deleteEventButton').hide()
     $('#addUserButton').hide()
-
+    if (!isLoggedIn()){
+    	$('#addEventButton').hide()
+    }
 	var dateObj = new Date();
 	var month = dateObj.getUTCMonth() + 1; //months from 1-12
 	var day = dateObj.getUTCDate();
@@ -452,9 +454,10 @@ function defaultLoad(data){
 			
 			
 		});
-		
-        $('#deleteEventButton').show()
-        $('#addUserButton').show()
+		if (isLoggedIn()){
+	        $('#deleteEventButton').show()
+	        $('#addUserButton').show()
+		}
         imageDisplayControl(users);
     	detailsDisplayControl();
 		  

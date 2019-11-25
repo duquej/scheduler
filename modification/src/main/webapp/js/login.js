@@ -1,3 +1,5 @@
+var registrationValidator;
+
 function loginHandler(){
 	
 	
@@ -56,7 +58,8 @@ function loginHandler(){
 				        
 				        //resetEventsTable();
 				        //onPageLoad();
-				    	window.location.href = "event.html";
+				    	//window.location.href = "event.html";
+				        location.reload();
 
 						
 		
@@ -121,7 +124,8 @@ function signInButtonLogic(){
 			        
 			        //resetEventsTable();
 			        //onPageLoad();
-			    	window.location.href = "event.html";
+			    	//window.location.href = "event.html";
+			    	location.reload();
 
 					
 	
@@ -164,5 +168,109 @@ function initializeSignInButton(){
 	    	
 	    }
 	    
+	
+}
+
+function validatorInitalizer(){
+	jQuery.validator.setDefaults({
+	    errorElement: 'span',
+	    errorPlacement: function (error, element) {
+	        error.addClass('invalid-feedback');
+	        element.closest('.form-group').append(error);
+	    },
+	    highlight: function (element, errorClass, validClass) {
+	        $(element).addClass('is-invalid');
+	    },
+	    unhighlight: function (element, errorClass, validClass) {
+	        $(element).removeClass('is-invalid');
+	    }
+	});
+}
+
+function formRegistrationValidator(){
+	validatorInitalizer()
+	
+	registrationValidator = $("#registration").validate({
+        rules: {
+            username: {
+                required: true,
+                minlength: 3
+            },
+            newemail: {
+                required: true
+            },
+            newpwd:  {
+                required: true,
+                minlength: 3
+            }
+        },
+
+        // Specify the validation error messages
+        messages: {
+        	name: {
+                required: "Please provide an event name",
+                minlength: "Your name must be at least 3 characters long"
+            },
+            newemail: {
+                required: "Please provide an email"
+            },
+            newpwd: {
+                required: "Please provide a password",
+                minlength: "Must be at least 3 letters long"
+            }
+        },
+        highlight: function (element, errorClass) {
+                $(element).closest('.form-control').addClass('has-error');
+                //$(element).addClass('has-error');
+            },
+            unhighlight: function (element, errorClass) {
+                $(element).closest(".form-control").removeClass("has-error");
+            },
+        
+
+    });
+	
+	
+}
+
+
+function registrationHandler(){
+	formRegistrationValidator();
+	
+	
+	$('#register-button').click(function(event){
+		if($("#registration").valid()){
+			$.ajax({
+			    type:"POST",
+			    url: "RegistrationServlet",
+			    data: $("#registration").serialize() ,
+			    success: function(data){
+			        $('#login-register').click()
+			        
+			        $("#success-register").fadeIn("slow",function(){
+			            setTimeout(function(){
+			              $("#success-register").fadeOut("slow");
+			            },4000);
+			          });
+	
+					
+	
+			    },
+			    error: function(data){
+			    	$('#login-register').click()
+			    		            
+	
+			    	$("#failure-register").fadeIn("slow",function(){
+			            setTimeout(function(){
+			              $("#failure-register").fadeOut("slow");
+			            },4000);
+			          });
+			    	
+			    	
+			    }
+			});
+		}
+	});
+	
 	
 }
