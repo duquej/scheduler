@@ -13,29 +13,11 @@ Scheduler allows groups of all sizes to schedule their events on any given avail
 
 ## Installation
 
-OS X & Linux:
-
-```sh
-npm install my-crazy-module --save
-```
-
 Windows:
 
 ```sh
-edit autoexec.bat
+git clone URL
 ```
-
-## Usage example
-
-when initially loading the site, this is what will appear. To make any sort of changes such as adding users/events, you must first sign in. 
-
-
-
-_For more examples and usage, please refer to the [Wiki][wiki]._
-
-## Development setup
-
-TO DO.
 
 
 ## Meta
